@@ -17,7 +17,7 @@ let mousePos = {
 
 c.width = screen.w;
 c.height = screen.h;
-const amount = 500;
+const amount = screen.w / 2;
 
 class Particle {
   constructor(id,x,y) {
@@ -39,6 +39,7 @@ class Particle {
     this.distanceLimit = 0;
     this.state = 'SPREADING';
     this.repel = true;
+    this.speed = _.random(0.2,2);
   }
   draw() {
     context.beginPath();
@@ -93,8 +94,8 @@ class Particle {
       this.setState('SPREADING');
     }
 
-    this.xVel += direction.x * -force;
-    this.yVel += direction.y * -force;
+    this.xVel += direction.x * -force * this.speed;
+    this.yVel += direction.y * -force * this.speed;
   }
   spread() {
     const newPosition = {
@@ -174,7 +175,7 @@ class Particle {
     };
   }
   randomPointFromCircle() {
-    const radius = 200;
+    const radius = screen.h / 4;
     const angle = Math.random() * 2 * Math.PI;
     const radius_sq = Math.random() * radius * radius;
     const x = Math.sqrt(radius_sq) * Math.cos(angle);

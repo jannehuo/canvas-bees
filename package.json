@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel index.html",
-    "bs": "browser-sync start --proxy 'localhost:1234'"
+    "bs": "browser-sync start --proxy 'localhost:1234'",
+    "build": "parcel build index.html --public-url ./"
   },
   "keywords": [],
   "author": "",
