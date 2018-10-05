@@ -220,20 +220,35 @@ class Bees {
 }
 
 window.addEventListener('click', (e) => {
-  mouse = {
-    x: e.clientX,
-    y: e.clientY
-  };
+  updateMouseClickPos(e.clientX,e.clientY);
   bees.move();
   bees.updateSpreads();
 },true);
 
 window.addEventListener('mousemove', (e) => {
-  mousePos = {
-    x: e.clientX,
-    y: e.clientY
-  };
+  updateMousePos(e.clientX,e.clientY);
 },true);
+
+window.addEventListener('touchmove', (e) => {
+  const touch = e.touches[0];
+  updateMouseClickPos(touch.clientX,touch.clientY);
+  bees.move();
+  bees.updateSpreads();
+},true);
+
+const updateMousePos = (x,y) => {
+  mousePos = {
+    x: x,
+    y: y
+  };
+}
+
+const updateMouseClickPos = (x,y) => {
+  mouse = {
+    x: x,
+    y: y
+  };
+}
 
 const animate = () => {
   requestAnimationFrame(animate);
